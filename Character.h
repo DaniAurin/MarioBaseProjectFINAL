@@ -47,5 +47,8 @@ public:
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
 
 	float GetCollisionRadius();
+
+	bool IsJumping();
+	void CancelJump();
 };
 

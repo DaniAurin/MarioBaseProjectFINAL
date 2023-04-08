@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
 
 PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
 {
@@ -12,7 +11,7 @@ PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
 
 	if (!m_texture->LoadFromFile(imagePath.c_str()))
 	{
-		cout << "Falied to load pow block texture: " << std::endl;
+		std::cout << "Falied to load pow block texture: " << std::endl;
 		return;
 	}
 
@@ -35,7 +34,7 @@ PowBlock::~PowBlock()
 
 void PowBlock::TakeHit()
 {
-	m_num_hits_left--;
+	m_num_hits_left - 1;
 
 	if (m_num_hits_left <= 0)
 	{
@@ -44,6 +43,8 @@ void PowBlock::TakeHit()
 		m_level_map->ChangeTileAt(8, 7, 0);
 		m_level_map->ChangeTileAt(8, 8, 0);
 	}
+	std::cout << "HIT" << std::endl;
+
 }
 
 void PowBlock::Render()
@@ -58,11 +59,12 @@ void PowBlock::Render()
 
 		//determine where to draw it
 		SDL_Rect dest_rect = {
-	static_cast<int>(m_position.x), static_cast<int>(m_position.y), m_single_sprite_width, m_single_sprite_height
+	 static_cast<int>(m_position.x), static_cast<int>(m_position.y), m_single_sprite_width, m_single_sprite_height
 		};
 
 		//draw the sprite
 		m_texture->Render(portion_of_sprite, dest_rect, SDL_FLIP_NONE);
 
 	}
+	std::cout << "HIT" << std::endl;
 }
