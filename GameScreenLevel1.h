@@ -21,11 +21,16 @@ private:
     void SetLevelMap();
     LevelMap* m_level_map;
     PowBlock* m_pow_block;
+    bool m_screenshake;
+    float m_shake_time;
+    float m_wobble;
+    float m_background_yPos;
 public:
     GameScreenLevel1(SDL_Renderer* renderer);
     ~GameScreenLevel1();
     void Render() override;
     void Update(float deltaTime, SDL_Event e) override;
     void UpdatePOWBlock();
+    void DoScreenshake();
 };
 #endif
