@@ -3,13 +3,14 @@
 #include "Texture2D.h"
 
 
-Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position)
+Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position, LevelMap* map)
 {
 	m_face_direction = FACING_RIGHT;
 	m_renderer = renderer;
 	m_position = start_position;
 	m_texture = new Texture2D(m_renderer);
 	m_collision_radius = 15.0f;
+	m_current_level_map = map;
 	if (m_texture->LoadFromFile(imagePath) == false) 
 	{
 		std::cout << "Failed to load background texture!!!!" << imagePath << std::endl;

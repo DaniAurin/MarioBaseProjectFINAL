@@ -7,6 +7,7 @@
 #include <SDL_mixer.h>
 #include "Commons.h"
 #include <string>
+#include "LevelMap.h"
 
 
 class Texture2D;
@@ -31,7 +32,7 @@ protected:
 	float m_collision_radius;
 
 public:
-	Character(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position);
+	Character(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position, LevelMap* map);
 	~Character();
 
 	virtual void Render();
@@ -40,6 +41,8 @@ public:
 	virtual void JUMP();
 	void SetPosition(Vector2D new_position);
 	Vector2D GetPosition();
+
+	LevelMap* m_current_level_map;
 
 	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWdith(), m_texture->GetHeight()); }
 

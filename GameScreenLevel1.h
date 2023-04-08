@@ -4,6 +4,7 @@
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "Character.h"
+#include "LevelMap.h"
 #ifndef _GAMESCREENLEVEL1_H
 #define _GAMESCREENLEVEL1_H
 
@@ -16,6 +17,8 @@ private:
     bool SetUpLevel();
     CharacterMario* mario;
     CharacterLuigi* luigi;
+    void SetLevelMap();
+    LevelMap* m_level_map;
 public:
     GameScreenLevel1(SDL_Renderer* renderer);
     ~GameScreenLevel1();
