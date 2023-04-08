@@ -2,6 +2,7 @@
 #include "LevelMap.h"
 #include <string>
 #include <iostream>
+#include "PowBlock.h"
 
 
 PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
@@ -43,7 +44,7 @@ void PowBlock::TakeHit()
 		m_level_map->ChangeTileAt(8, 7, 0);
 		m_level_map->ChangeTileAt(8, 8, 0);
 	}
-	std::cout << "HIT" << std::endl;
+
 
 }
 
@@ -66,5 +67,4 @@ void PowBlock::Render()
 		m_texture->Render(portion_of_sprite, dest_rect, SDL_FLIP_NONE);
 
 	}
-	std::cout << "HIT" << std::endl;
 }

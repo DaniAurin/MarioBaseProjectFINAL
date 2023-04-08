@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Commons.h"
 #include "Texture2D.h"
-#ifndef _GAME_SCREEN-H
+#ifndef _GAME_SCREEN_H
 #define _GAME_SCREEN_H
 
 
