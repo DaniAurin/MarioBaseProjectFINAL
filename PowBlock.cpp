@@ -6,7 +6,7 @@
 
 PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
 {
-	std::string imagePath = "Images/Objects/PowBlock.png";
+	std::string imagePath = "Images/PowBlock.png";
 	m_texture = new Texture2D(renderer);
 
 	if (!m_texture->LoadFromFile(imagePath.c_str()))
@@ -34,7 +34,7 @@ PowBlock::~PowBlock()
 
 void PowBlock::TakeHit()
 {
-	m_num_hits_left - 1;
+	m_num_hits_left--;
 
 	if (m_num_hits_left <= 0)
 	{
