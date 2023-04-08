@@ -44,7 +44,7 @@ public:
 
 	LevelMap* m_current_level_map;
 
-	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWdith(), m_texture->GetHeight()); }
+	Rect2D GetCollisionBox() { return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight()); }
 
 	float GetCollisionRadius();
 };

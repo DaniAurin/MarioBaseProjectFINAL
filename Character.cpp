@@ -38,7 +38,17 @@ void Character::Render()
 }
 void Character::Update(float deltaTime, SDL_Event e)
 {
-	AddGravity(deltaTime);
+    //collision position variables
+	int centralX_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5)) / TILE_WIDTH;
+	int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
+	if (m_current_level_map->GetTileAt(foot_position, centralX_position) == 0)
+	{
+		AddGravity(deltaTime);
+	}
+	else
+	{
+		m_can_jump = true;
+	}
 	if (m_jumping)
 	{
 		//adjust position

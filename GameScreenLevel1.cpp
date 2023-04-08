@@ -73,6 +73,7 @@ void GameScreenLevel1::SetLevelMap()
 					  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 					  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 					  { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
+	std::cout << "COLLISION";
 
 	//clear any old maps
 	if (m_level_map != nullptr)
