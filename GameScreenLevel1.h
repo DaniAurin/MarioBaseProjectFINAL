@@ -25,6 +25,7 @@ private:
     float m_shake_time;
     float m_wobble;
     float m_background_yPos;
+
 public:
     GameScreenLevel1(SDL_Renderer* renderer);
     ~GameScreenLevel1();
