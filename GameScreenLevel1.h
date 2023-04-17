@@ -1,10 +1,12 @@
 #pragma once
 #include "GameScreen.h"
 #include "Commons.h"
+#include "Koopa.h"
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "Character.h"
 #include "LevelMap.h"
+#include <vector>
 #ifndef _GAMESCREENLEVEL1_H
 #define _GAMESCREENLEVEL1_H
 
@@ -25,6 +27,12 @@ private:
     float m_shake_time;
     float m_wobble;
     float m_background_yPos;
+    float koopa_spawn_countdown;
+    float spawnRate;
+
+    void UpdateEnemies(float deltaTime, SDL_Event e);
+    void CreateKoopa(Vector2D position, FACING direction, float speed);
+    std::vector<Koopa*> m_enemies;
 
 public:
     GameScreenLevel1(SDL_Renderer* renderer);

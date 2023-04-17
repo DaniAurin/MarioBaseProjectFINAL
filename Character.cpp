@@ -11,6 +11,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	m_texture = new Texture2D(m_renderer);
 	m_collision_radius = 15.0f;
 	m_current_level_map = map;
+	m_alive = true;
 	if (m_texture->LoadFromFile(imagePath) == false) 
 	{
 		std::cout << "Failed to load background texture!!!!" << imagePath << std::endl;
@@ -120,4 +121,9 @@ bool Character::IsJumping()
 void Character::CancelJump()
 {
 	m_jump_force = -m_jump_force;
+}
+
+void Character::SetAlive(bool isAlive)
+{
+	m_alive = isAlive;
 }

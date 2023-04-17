@@ -16,6 +16,7 @@ class Character
 {
 
 protected:
+	bool m_alive;
 	SDL_Renderer* m_renderer;
 	Vector2D m_position;
 	Texture2D* m_texture;
@@ -50,5 +51,8 @@ public:
 
 	bool IsJumping();
 	void CancelJump();
-};
 
+	bool GetAlive() { return m_alive; };
+	void SetAlive(bool isAlive);
+
+};
