@@ -16,3 +16,4 @@
 #define INITIAL_JUMP_FORCE_SMALL 100.0f
 #define KOOPA_SPEED 0.01f
 #define SPAWN_RATE 10.0f
+#define FRAME_DELAY 0.15f

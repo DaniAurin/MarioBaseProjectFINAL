@@ -7,6 +7,7 @@
 #include "Character.h"
 #include "LevelMap.h"
 #include <vector>
+#include "Coin.h"
 #ifndef _GAMESCREENLEVEL1_H
 #define _GAMESCREENLEVEL1_H
 
@@ -28,11 +29,14 @@ private:
     float m_wobble;
     float m_background_yPos;
     float koopa_spawn_countdown;
-    float spawnRate;
 
     void UpdateEnemies(float deltaTime, SDL_Event e);
     void CreateKoopa(Vector2D position, FACING direction, float speed);
+    void UpdateCoin(float deltaTime, SDL_Event e);
+    void CreateCoin(Vector2D position);
     std::vector<Koopa*> m_enemies;
+    std::vector<Coin*> m_coins;
+    int coinsRemaining;
 
 public:
     GameScreenLevel1(SDL_Renderer* renderer);

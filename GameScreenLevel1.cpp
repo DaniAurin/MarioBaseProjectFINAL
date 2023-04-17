@@ -7,6 +7,7 @@
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "PowBlock.h"
+#include "Coin.h"
 
 
 
@@ -14,8 +15,8 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 {
 	SetUpLevel();
 	m_level_map = nullptr;
-	koopa_spawn_countdown = 0.0f;
-	spawnRate = SPAWN_RATE;
+	koopa_spawn_countdown = SPAWN_RATE;
+	coinsRemaining = 5;
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -35,6 +36,7 @@ GameScreenLevel1::~GameScreenLevel1()
 		delete m_enemies[i];
 	}
 	m_enemies.clear();
+	m_coins.clear();
 
 }
 bool GameScreenLevel1::SetUpLevel()
@@ -49,6 +51,13 @@ bool GameScreenLevel1::SetUpLevel()
 	luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(64, 330), m_level_map);
 	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
 	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(170, 32), FACING_RIGHT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(240, 32), FACING_LEFT, KOOPA_SPEED);
+	CreateCoin(Vector2D(240, 32));
+	CreateCoin(Vector2D(150, 32));
+	CreateCoin(Vector2D(325, 32));
+	CreateCoin(Vector2D(70, 32));
+	CreateCoin(Vector2D(205, 32));
 
 	m_background_texture = new Texture2D(m_renderer);
 	if (!m_background_texture->LoadFromFile("Images/BackgroundMB.png")) 
@@ -65,6 +74,11 @@ void GameScreenLevel1::Render()
 	for (int i = 0; i < m_enemies.size(); i++)
 	{
 		m_enemies[i]->Render();
+	}
+	//drawing coin
+	for (int i = 0; i < m_coins.size(); i++)
+	{
+		m_coins[i]->Render();
 	}
 	m_background_texture->Render(Vector2D(0,0), SDL_FLIP_NONE);
 	mario->Render();
@@ -100,6 +114,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	UpdatePOWBlock();
 	UpdateEnemies(deltaTime, e);
 
+	UpdateCoin(deltaTime, e);
 
 }
 
@@ -226,3 +241,34 @@ void GameScreenLevel1::CreateKoopa(Vector2D position, FACING direction, float sp
 	m_enemies.push_back(characterKoopa);
 }
 
+void GameScreenLevel1::UpdateCoin(float deltaTime, SDL_Event e)
+{
+	if (!m_coins.empty())
+	{
+		int coinIndexToDelete = -1;
+		for (unsigned int i = 0; i < m_coins.size(); i++)
+		{
+			m_coins[i]->Update(deltaTime, e);
+
+			if (Collisions::Instance()->Circle(m_coins[i], mario))
+			{
+				m_coins[i]->SetAlive(false);
+			}
+			if (!m_coins[i]->GetAlive())
+			{
+				coinIndexToDelete = i;
+			}
+		}
+		if (coinIndexToDelete != -1)
+		{
+			m_coins.erase(m_coins.begin() + coinIndexToDelete);
+		}
+	}
+
+}
+
+void GameScreenLevel1::CreateCoin(Vector2D position)
+{
+	Coin* characterCoin = new Coin(m_renderer, "Images/Coin.png", m_level_map, position);
+	m_coins.push_back(characterCoin);
+}
