@@ -37,6 +37,7 @@ private:
     std::vector<Koopa*> m_enemies;
     std::vector<Coin*> m_coins;
     int coinsRemaining;
+    int mScore;
 
 public:
     GameScreenLevel1(SDL_Renderer* renderer);

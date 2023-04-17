@@ -17,6 +17,7 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 	m_level_map = nullptr;
 	koopa_spawn_countdown = SPAWN_RATE;
 	coinsRemaining = 5;
+	mScore = 0;
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -253,6 +254,8 @@ void GameScreenLevel1::UpdateCoin(float deltaTime, SDL_Event e)
 			if (Collisions::Instance()->Circle(m_coins[i], mario))
 			{
 				m_coins[i]->SetAlive(false);
+				coinsRemaining--;
+				mScore += 10;
 			}
 			if (!m_coins[i]->GetAlive())
 			{
