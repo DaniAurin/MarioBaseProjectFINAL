@@ -5,6 +5,7 @@
 #include "constants.h"
 #include "Collisions.h"
 #include "CharacterMario.h"
+#include "FlyingKoopa.h"
 #include "CharacterLuigi.h"
 #include "PowBlock.h"
 #include "Coin.h"
@@ -38,6 +39,11 @@ GameScreenLevel1::~GameScreenLevel1()
 	}
 	m_enemies.clear();
 	m_coins.clear();
+	for (int i = 0; i < m_fkoopa.size(); i++)
+	{
+		delete m_fkoopa[i];
+	}
+	m_fkoopa.clear();
 
 }
 bool GameScreenLevel1::SetUpLevel()
@@ -54,6 +60,8 @@ bool GameScreenLevel1::SetUpLevel()
 	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
 	CreateKoopa(Vector2D(170, 32), FACING_RIGHT, KOOPA_SPEED);
 	CreateKoopa(Vector2D(240, 32), FACING_LEFT, KOOPA_SPEED);
+	CreateFlyingKoopa(Vector2D(170, 20), FACING_RIGHT, KOOPA_SPEED);
+	CreateFlyingKoopa(Vector2D(240, 20), FACING_LEFT, KOOPA_SPEED);
 	CreateCoin(Vector2D(240, 32));
 	CreateCoin(Vector2D(150, 32));
 	CreateCoin(Vector2D(325, 32));
@@ -73,6 +81,11 @@ bool GameScreenLevel1::SetUpLevel()
 
 void GameScreenLevel1::Render()
 {
+	//draw fkoopa
+	for (int i = 0; i < m_fkoopa.size(); i++)
+	{
+		m_fkoopa[i]->Render();
+	}
 	//draw the enemies
 	for (int i = 0; i < m_enemies.size(); i++)
 	{
@@ -117,6 +130,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	luigi->Update(deltaTime, e);
 	UpdatePOWBlock();
 	UpdateEnemies(deltaTime, e);
+	UpdateFlyingKoopa(deltaTime, e);
 
 	UpdateCoin(deltaTime, e);
 
@@ -279,5 +293,59 @@ void GameScreenLevel1::CreateCoin(Vector2D position)
 	m_coins.push_back(characterCoin);
 }
 
+void GameScreenLevel1::UpdateFlyingKoopa(float deltaTime, SDL_Event e)
+{
+	if (!m_fkoopa.empty())
+	{
+		int fkoopaIndexToDelete = -1;
+		for (unsigned int i = 0; i < m_fkoopa.size(); i++)
+		{
+			//check if the enemy is on the bottom row of tiles
+			if (m_fkoopa[i]->GetPosition().y > 300.0f)
+			{
+				//is the enemy off screen to the left / right?
+				if (m_fkoopa[i]->GetPosition().x < (float)(-m_fkoopa[i]->GetCollisionBox().width * 0.5f) || m_fkoopa[
+					i]->GetPosition().x > SCREEN_WIDTH - (float)(m_fkoopa[i]->GetCollisionBox().width * 0.5f))
+					m_fkoopa[i]->SetAlive(false);
 
+			}
+			//now do the update
 
+			m_fkoopa[i]->Update(deltaTime, e);
+
+			//check to see if enemy collides with player
+			if ((m_fkoopa[i]->GetPosition().y > 300.0f || m_fkoopa[i]->GetPosition().y <= 64.0f) && (m_fkoopa[i]->
+				GetPosition().x < 64.0f || m_fkoopa[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
+			{
+				//ignore collisions if behind pipe
+			}
+			else
+			{
+				if (Collisions::Instance()->Circle(m_fkoopa[i], mario))
+				{
+						mario->SetAlive(false);
+						mario->SetPosition(Vector2D(500, 1000));
+				}
+			}
+
+			//if the enemy is no longer alive then schedule it for deletion
+			if (!m_fkoopa[i]->GetAlive())
+			{
+				fkoopaIndexToDelete = i;
+			}
+		}
+
+		//remove dead enemies -1 each update
+
+		if (fkoopaIndexToDelete != -1)
+		{
+			m_fkoopa.erase(m_fkoopa.begin() + fkoopaIndexToDelete);
+		}
+	}
+}
+void GameScreenLevel1::CreateFlyingKoopa(Vector2D position, FACING direction, float speed)
+{
+	FlyingKoopa* characterFkoopa = new FlyingKoopa(m_renderer, "Images/flyingkoopa2.png", m_level_map, position, direction, speed);
+	m_fkoopa.push_back(characterFkoopa);
+
+}

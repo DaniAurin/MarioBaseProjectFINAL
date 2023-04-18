@@ -8,6 +8,7 @@
 #include "LevelMap.h"
 #include <vector>
 #include "Coin.h"
+#include "FlyingKoopa.h"
 #ifndef _GAMESCREENLEVEL1_H
 #define _GAMESCREENLEVEL1_H
 
@@ -34,6 +35,9 @@ private:
     void CreateKoopa(Vector2D position, FACING direction, float speed);
     void UpdateCoin(float deltaTime, SDL_Event e);
     void CreateCoin(Vector2D position);
+    void UpdateFlyingKoopa(float deltaTime, SDL_Event e);
+    void CreateFlyingKoopa(Vector2D position, FACING direction, float speed);
+    std::vector<FlyingKoopa*> m_fkoopa;
     std::vector<Koopa*> m_enemies;
     std::vector<Coin*> m_coins;
     int coinsRemaining;
