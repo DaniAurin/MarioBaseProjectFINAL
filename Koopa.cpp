@@ -7,7 +7,6 @@ Koopa::Koopa(SDL_Renderer* renderer, std::string imagePath, LevelMap* map, Vecto
 	m_facing_direction = start_facing;
 	m_movement_speed = movement_speed;
 	m_position = start_position;
-	m_injured = false;
 
 	m_single_sprite_w = m_texture->GetWidth() / 2;
 	m_single_sprite_h = m_texture->GetHeight();

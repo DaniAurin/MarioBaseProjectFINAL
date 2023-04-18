@@ -53,6 +53,9 @@
     <ClCompile Include="Coin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FlyingKoopa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="SDL2\SDL\SDL2main.lib" />
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Coin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingKoopa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

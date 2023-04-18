@@ -60,6 +60,8 @@ bool GameScreenLevel1::SetUpLevel()
 	CreateCoin(Vector2D(70, 32));
 	CreateCoin(Vector2D(205, 32));
 
+
+
 	m_background_texture = new Texture2D(m_renderer);
 	if (!m_background_texture->LoadFromFile("Images/BackgroundMB.png")) 
 	{
@@ -81,6 +83,7 @@ void GameScreenLevel1::Render()
 	{
 		m_coins[i]->Render();
 	}
+
 	m_background_texture->Render(Vector2D(0,0), SDL_FLIP_NONE);
 	mario->Render();
 	luigi->Render();
@@ -275,3 +278,6 @@ void GameScreenLevel1::CreateCoin(Vector2D position)
 	Coin* characterCoin = new Coin(m_renderer, "Images/Coin.png", m_level_map, position);
 	m_coins.push_back(characterCoin);
 }
+
+
+

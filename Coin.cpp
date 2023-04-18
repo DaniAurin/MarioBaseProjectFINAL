@@ -41,7 +41,7 @@ void Coin::Update(float deltaTime, SDL_Event e)
 		m_frame_delay = FRAME_DELAY;
 		m_current_frame++;
 
-		if (m_current_frame > 2)
+		if (m_current_frame > 3)
 		{
 			m_current_frame = 0;
 		}

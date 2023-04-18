@@ -169,6 +169,7 @@
     <ClCompile Include="CharacterMario.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Collisions.cpp" />
+    <ClCompile Include="FlyingKoopa.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="GameScreenLevel1.cpp" />
     <ClCompile Include="GameScreenManager.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Commons.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="FlyingKoopa.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="GameScreenLevel1.h" />
     <ClInclude Include="GameScreenManager.h" />
