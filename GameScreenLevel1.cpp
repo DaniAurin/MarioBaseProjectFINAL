@@ -362,8 +362,16 @@ void GameScreenLevel1::UpdateFlyingKoopa(float deltaTime, SDL_Event e)
 				{
 						mario->SetAlive(false);
 						mario->SetPosition(Vector2D(500, 1000));
+
+				}
+                if (Collisions::Instance()->Circle(m_fkoopa[i], luigi))
+				{
+					luigi->SetAlive(false);
+					luigi->SetPosition(Vector2D(500, 1000));
+
 				}
 			}
+
 
 			//if the enemy is no longer alive then schedule it for deletion
 			if (!m_fkoopa[i]->GetAlive())

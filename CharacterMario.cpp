@@ -94,6 +94,7 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 	}
 	if (m_moving_left) {
 		MoveLeft(deltaTime);
+
 	}
 	else if (m_moving_right) {
 		MoveRight(deltaTime);
