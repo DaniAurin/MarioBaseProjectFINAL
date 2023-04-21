@@ -46,6 +46,8 @@ void CharacterMario::Render()
 
 void CharacterMario::Update(float deltaTime, SDL_Event e)
 {
+	Character::Update(deltaTime, e);
+
 	m_frame_delay -= deltaTime;
 	if (m_frame_delay <= 0.0f)
 	{

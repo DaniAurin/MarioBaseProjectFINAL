@@ -9,6 +9,7 @@ public:
 	void FlipRightwayUp();
 	FACING m_facing_direction;
 
+
 private:
 	float m_single_sprite_w;
 	float m_single_sprite_h;

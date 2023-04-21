@@ -18,3 +18,4 @@
 #define SPAWN_RATE 10.0f
 #define FRAME_DELAY 0.15f
 #define KOOPA_F_DELAY 1.0f
+#define MARIO_F_DELAY 1.0f

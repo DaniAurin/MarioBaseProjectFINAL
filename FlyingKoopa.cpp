@@ -30,8 +30,6 @@ void FlyingKoopa::Render()
 }
 void FlyingKoopa::Update(float deltaTime, SDL_Event e)
 {
-	//base class calling
-	Character::Update(deltaTime, e);
 	m_frame_delay -= deltaTime;
 	if (m_frame_delay <= 0.0f)
 	{
