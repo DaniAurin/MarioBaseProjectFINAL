@@ -54,7 +54,7 @@ bool GameScreenLevel1::SetUpLevel()
 	m_screenshake = false;
 	m_background_yPos = 0.0f;
 	//set up player character
-	mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(64, 330), m_level_map);
+	mario = new CharacterMario(m_renderer, "Images/MarioWalking2.png", Vector2D(64, 330), m_level_map);
 	luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(64, 330), m_level_map);
 	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
 	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
@@ -138,19 +138,19 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 
 void GameScreenLevel1::SetLevelMap()
 {
-	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-					                   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-					                   { 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
-				                       { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-					                   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-					                   { 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0 },
-					                   { 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
-				                   	   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-				                  	   { 0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
-				                 	   { 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
-				                 	   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-				                 	   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-				                   	   { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
+	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+					                   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+					                   { 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1 },
+				                       { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+					                   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+					                   { 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0 },
+					                   { 0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1 },
+				                   	   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+				                  	   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+				                 	   { 1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1 },
+				                 	   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+				                 	   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+				                   	   { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
 
 	//clear any old maps
 	if (m_level_map != nullptr)
