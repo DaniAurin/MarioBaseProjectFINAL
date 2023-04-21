@@ -345,7 +345,7 @@ void GameScreenLevel1::UpdateFlyingKoopa(float deltaTime, SDL_Event e)
 }
 void GameScreenLevel1::CreateFlyingKoopa(Vector2D position, FACING direction, float speed)
 {
-	FlyingKoopa* characterFkoopa = new FlyingKoopa(m_renderer, "Images/flyingkoopa2.png", m_level_map, position, direction, speed);
+	FlyingKoopa* characterFkoopa = new FlyingKoopa(m_renderer, "Images/flyingkoopa3.png", m_level_map, position, direction, speed);
 	m_fkoopa.push_back(characterFkoopa);
 
 }

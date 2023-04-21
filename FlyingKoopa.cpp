@@ -6,7 +6,10 @@ FlyingKoopa::FlyingKoopa(SDL_Renderer* renderer, std::string imagePath, LevelMap
 	m_movement_speed = movement_speed;
 	m_position = start_position;
 
-	m_single_sprite_w = m_texture->GetWidth() / 4;
+	m_current_frame = 0;
+	m_frame_delay = KOOPA_F_DELAY;
+
+	m_single_sprite_w = m_texture->GetWidth() / 2;
 	m_single_sprite_h = m_texture->GetHeight();
 }
 FlyingKoopa::~FlyingKoopa()
@@ -15,30 +18,31 @@ FlyingKoopa::~FlyingKoopa()
 }
 void FlyingKoopa::Render() 
 {
-	//variable holds the left pos of sprite we want drawn :)) 
-	int left = 0.0f;
+	int left = m_current_frame * m_single_sprite_w;
 
 	//get the portion of the sprite sheet you want to draw
 	//							   {xPos, yPos, width of sprite, height of sprite} (IMPORTANT!)
-	SDL_Rect portion_of_sprite = { left,0,m_single_sprite_w, m_single_sprite_h };
-
+	SDL_Rect portion_of_sprite = { m_single_sprite_w* m_current_frame, 0,m_single_sprite_w, m_single_sprite_h};
 	//determines where its drawn from 
-	SDL_Rect destRect = { (int)(m_position.x), (int)(m_position.y), m_single_sprite_w, m_single_sprite_h };
+	SDL_Rect destRect = { (int)(m_position.x), (int)(m_position.y), m_single_sprite_w, m_single_sprite_h};
 
-	//then draw it facing the correct direction x
-	if (m_facing_direction == FACING_RIGHT)
-	{
-		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_NONE);
-	}
-	else
-	{
-		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_VERTICAL);
-	}
+	m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_NONE);
 }
 void FlyingKoopa::Update(float deltaTime, SDL_Event e)
 {
 	//base class calling
 	Character::Update(deltaTime, e);
+	m_frame_delay -= deltaTime;
+	if (m_frame_delay <= 0.0f)
+	{
+		m_frame_delay = KOOPA_F_DELAY;
+		m_current_frame++;
+
+		if (m_current_frame > 1)
+		{
+			m_current_frame = 0;
+		}
+	}
 
 	if (m_position.x + m_single_sprite_w > SCREEN_WIDTH && m_facing_direction == FACING_RIGHT && m_position.y < 300.0f) {
 		m_facing_direction = FACING_LEFT;
