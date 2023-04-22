@@ -12,6 +12,7 @@
 
 
 
+
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
 	SetUpLevel();

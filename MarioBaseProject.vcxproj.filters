@@ -110,5 +110,8 @@
     <ClInclude Include="FlyingKoopa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoundEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
