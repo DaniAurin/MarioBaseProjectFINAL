@@ -38,10 +38,16 @@ void CharacterMario::Render()
 	//get the portion of the sprite sheet you want to draw
 	//							   {xPos, yPos, width of sprite, height of sprite} (IMPORTANT!)
 	SDL_Rect portion_of_sprite = { m_single_sprite_w * m_current_frame, 0,m_single_sprite_w, m_single_sprite_h };
-	//determines where its drawn from 
 	SDL_Rect destRect = { (int)(m_position.x), (int)(m_position.y), m_single_sprite_w, m_single_sprite_h };
 
-	m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_NONE);
+	if (m_face_direction == FACING_RIGHT)
+	{
+		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_NONE);
+	}
+	if (m_face_direction == FACING_LEFT)
+	{
+		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_HORIZONTAL);
+	}
 }
 
 void CharacterMario::Update(float deltaTime, SDL_Event e)
@@ -68,9 +74,11 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 		{
 		case SDLK_a:
 			m_moving_left = true;
+			m_moving_right = false;
 			break;
 		case SDLK_d:
 			m_moving_right = true;
+			m_moving_left = false;
 			break;
 		case SDLK_w:
 			if (m_can_jump)
