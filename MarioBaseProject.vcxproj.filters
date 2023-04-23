@@ -56,6 +56,9 @@
     <ClCompile Include="FlyingKoopa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameScreenYouWin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="SDL2\SDL\SDL2main.lib" />
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoundEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreenYouWin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

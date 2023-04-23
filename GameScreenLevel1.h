@@ -44,7 +44,7 @@ private:
     int mScore;
 
 public:
-    GameScreenLevel1(SDL_Renderer* renderer);
+    GameScreenLevel1(SDL_Renderer* renderer, GameScreenManager* _screenManager);
     ~GameScreenLevel1();
     void Render() override;
     void Update(float deltaTime, SDL_Event e) override;

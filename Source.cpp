@@ -41,6 +41,7 @@ int main(int argc, char* args[])
 	if (InitSDL())
 	{
 		game_screen_manager = new GameScreenManager(g_renderer, SCREEN_LEVEL1);
+
 		g_old_time = SDL_GetTicks();
 		//flat to check if we wish to quit
 		bool quit = false;

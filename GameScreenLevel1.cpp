@@ -9,17 +9,20 @@
 #include "CharacterLuigi.h"
 #include "PowBlock.h"
 #include "Coin.h"
+#include "GameScreenYouWin.h"
 
 
 
 
-GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
+GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer, GameScreenManager* _screenManager) : GameScreen(renderer, _screenManager)
 {
+
 	SetUpLevel();
 	m_level_map = nullptr;
 	koopa_spawn_countdown = SPAWN_RATE;
 	coinsRemaining = 5;
 	mScore = 0;
+
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -322,6 +325,12 @@ void GameScreenLevel1::UpdateCoin(float deltaTime, SDL_Event e)
 			m_coins.erase(m_coins.begin() + coinIndexToDelete);
 		}
 	}
+
+	if (coinsRemaining == 0)
+	{
+		GameScreen::screenManager->ChangeScreen(SCREEN_LEVEL2);
+	}
+
 
 }
 
