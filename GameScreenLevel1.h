@@ -9,6 +9,7 @@
 #include <vector>
 #include "Coin.h"
 #include "FlyingKoopa.h"
+#include "TextRenderer.h"
 #ifndef _GAMESCREENLEVEL1_H
 #define _GAMESCREENLEVEL1_H
 
@@ -42,6 +43,10 @@ private:
     std::vector<Coin*> m_coins;
     int coinsRemaining;
     int mScore;
+
+    TextRenderer* m_text;
+    int score;
+    int old_score;
 
 public:
     GameScreenLevel1(SDL_Renderer* renderer);

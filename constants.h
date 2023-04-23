@@ -19,3 +19,5 @@
 #define FRAME_DELAY 0.15f
 #define KOOPA_F_DELAY 1.0f
 #define MARIO_F_DELAY 1.0f
+#define level_width 1024
+#define level_height 416

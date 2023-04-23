@@ -9,6 +9,7 @@
 #include "CharacterLuigi.h"
 #include "PowBlock.h"
 #include "Coin.h"
+#include "TextRenderer.h"
 
 
 
@@ -51,6 +52,10 @@ bool GameScreenLevel1::SetUpLevel()
 {
 	SetLevelMap();
 
+	m_text = new TextRenderer(m_renderer);
+	if (!m_text->LoadFont("Fonts/kongtext.ttf", 15, "Score" + std::to_string(score), { 255,0,0,255 }));
+
+	
 	m_pow_block = new PowBlock(m_renderer, m_level_map);
 	m_screenshake = false;
 	m_background_yPos = 0.0f;
@@ -102,6 +107,7 @@ void GameScreenLevel1::Render()
 	mario->Render();
 	luigi->Render();
 	m_pow_block->Render();
+	m_text->Render(20, 20);
 
 	//draw background!! >:)
 	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
@@ -109,6 +115,13 @@ void GameScreenLevel1::Render()
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
+	if (m_text != nullptr && score != old_score)
+	{
+		old_score = score;
+		m_text->LoadFont("Fonts/kongtext.ttf", 15, "Score" + std::to_string(score), {255,0,0,255});
+	}
+
+
 	/*
 	* do the screen shake!! if needed <3
 	*/

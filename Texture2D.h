@@ -22,12 +22,16 @@ public:
 	int GetHeight() { return m_height; }
 
 
+
+
 private:
 	SDL_Renderer* m_renderer;
 	SDL_Texture* m_texture;
 
 	int m_width;
 	int m_height;
+
+
 
 
 };
